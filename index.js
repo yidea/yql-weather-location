@@ -1,0 +1,151 @@
+var querystring = require('querystring'),
+  Oauth = require('oauth');
+
+/*
+ * @ NodeWeiboTwitter
+ * ----------------------------------
+ * - Factory w singleton
+ * - var twitter = NodeWeiboTwitter.create("twitter", options); twitter.getTweet()
+ */
+var NodeWeiboTwitter = {
+  TYPE2API: {
+    "weibo":   Weibo,
+    "twitter": Twitter
+  },
+
+  create: function (type, options) {
+    var API = this.TYPE2API[type];
+    if (!API) {
+      throw new TypeError(type + " is not supported");
+    }
+    if (!options.consumer_key || !options.consumer_secret) {
+      throw new TypeError("appKey or appSecret is not set");
+    }
+    if (!options.access_token_key) {
+      throw new TypeError("appKey or appSecret is not set");
+    }
+
+    return new API(options);
+  }
+};
+
+/*
+ * @ Weibo
+ * ----------------------------------
+ * - How to get Weibo access_token - read README
+ */
+function Weibo(options) {
+  this.oauth = new Oauth.OAuth2(
+    options.consumer_key,
+    options.consumer_secret,
+    "https://api.weibo.com/",
+    "oauth2/authorize",
+    "oauth2/access_token"
+  );
+  if (!options.access_token_key) {
+    throw new TypeError("accessTokenKey is needed for Weibo");
+  } else {
+    this.accessTokenKey = options.access_token_key;
+  }
+}
+
+Weibo.prototype = {
+  //TODO: As of 2.0, weibo stop supporting get weibo by screenName service, only allow return user's own weibo
+  //http://open.weibo.com/wiki/2/statuses/user_timeline
+  getWeibo: function (screenName, count, cb) {
+    if (!screenName) {
+      throw new TypeError("screenName is not set");
+    }
+    if (!count) {
+      count = 10;
+    }
+    if (!cb) {
+      cb = function () {
+      };
+    }
+    var api = "https://api.weibo.com/2/statuses/home_timeline.json?trim_user=true&screen_name=" + screenName + "&count=" + count,
+      header = {"User-Agent": "node-weibo-twitter"};
+    this.oauth._request("GET", api, header, "", this.accessTokenKey, this._weiboCallbackWrapper(cb));
+  },
+
+  postWeibo: function (msg, cb) {
+    if (!cb) {
+      cb = function () {};
+    }
+    var api = "https://api.weibo.com/2/statuses/update.json",
+      header = {"Content-Type": "application/x-www-form-urlencoded"},
+      data = {status: msg};
+    data = querystring.stringify(data);
+    this.oauth._request(
+      "POST",
+      api,
+      header,
+      data,
+      this.accessTokenKey,
+      this._weiboCallbackWrapper(cb)
+    );
+  },
+
+  _weiboCallbackWrapper: function (cb) {
+    return function (err, data, response) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      var result;
+      try {
+        result = JSON.parse(data);
+      } catch (e) {
+        console.log(e);
+        return;
+      }
+      cb(null, result, response);
+    };
+  }
+};
+
+/*
+ * @ Twitter
+ * ----------------------------------
+ */
+function Twitter(options) {
+  this.oauth = new Oauth.OAuth(
+    "https://api.twitter.com/oauth/request_token",
+    "https://api.twitter.com/oauth/access_token",
+    options.consumer_key,
+    options.consumer_secret,
+    '1.0A',
+    null,
+    'HMAC-SHA1'
+  );
+
+  this.accessTokenKey = options.access_token_key;
+  this.accessTokenSecret = options.access_token_secret;
+}
+
+Twitter.prototype = {
+  getTweet: function (screenName, count, cb) {
+    if (!count) {
+      count = 10;
+    }
+    var api = "https://api.twitter.com/1.1/statuses/user_timeline.json?trim_user=true&exclude_replies=true&screen_name=" + screenName + "&count=" + count;
+    this.oauth.get(
+      api,
+      this.accessTokenKey,
+      this.accessTokenSecret,
+      cb
+    );
+  },
+  postTweet: function (msg, cb) {
+    var api = "https://api.twitter.com/1.1/statuses/update.json";
+    this.oauth.post(
+      api,
+      this.accessTokenKey,
+      this.accessTokenSecret,
+      {"status": msg},
+      cb
+    )
+  }
+};
+
+module.exports = NodeWeiboTwitter;
