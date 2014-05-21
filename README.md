@@ -17,6 +17,8 @@ npm install node-weibo-twitter
 ## Usage 
 
 ```js
+var NodeWeiboTwitter= require("node-weibo-twitter");
+
 var twitterOptions = {
   consumer_key: "YOURS",
   consumer_secret: "YOURS",
