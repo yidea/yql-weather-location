@@ -1,9 +1,11 @@
 # node-weibo-twitter
-==================
+-------------------
 
 An util for get/post weibo/tweet
 
 ## Installation
+
+npm install node-weibo-twitter
 
 ## TODO
 
