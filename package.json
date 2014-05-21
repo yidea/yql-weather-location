@@ -1,0 +1,25 @@
+{
+  "name": "node-weibo-twitter",
+  "version": "0.0.1",
+  "description": "Npm module for tweet and weibo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yidea/node-weibo-twitter.git"
+  },
+  "keywords": [
+    "weibo",
+    "twitter",
+    "tweet",
+    "nodejs"
+  ],
+  "author": "Yi Cao",
+  "bugs": {
+    "url": "https://github.com/yidea/node-weibo-twitter/issues"
+  },
+  "homepage": "https://github.com/yidea/node-weibo-twitter",
+  "license": "MIT"
+}
