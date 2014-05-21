@@ -107,6 +107,7 @@ Weibo.prototype = {
 /*
  * @ Twitter
  * ----------------------------------
+ * - https://dev.twitter.com/docs/api/1.1
  */
 function Twitter(options) {
   this.oauth = new Oauth.OAuth(
@@ -136,6 +137,7 @@ Twitter.prototype = {
       cb
     );
   },
+
   postTweet: function (msg, cb) {
     var api = "https://api.twitter.com/1.1/statuses/update.json";
     this.oauth.post(
@@ -144,7 +146,24 @@ Twitter.prototype = {
       this.accessTokenSecret,
       {"status": msg},
       cb
-    )
+    );
+  },
+
+  postDM: function (screenName, msg, cb) {
+    if (!screenName) {
+      throw new TypeError("screenName is not set");
+    }
+    var api = "https://api.twitter.com/1.1/direct_messages/new.json";
+    this.oauth.post(
+      api,
+      this.accessTokenKey,
+      this.accessTokenSecret,
+      {
+        "screen_name": screenName,
+        "text": msg
+      },
+      cb
+    );
   }
 };
 

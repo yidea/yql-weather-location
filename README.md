@@ -12,7 +12,7 @@ npm install node-weibo-twitter
 - add docs
 - refactor code, put in its own file in lib
 - add unit test cover 
-- more api support
+- more api support (direct message)
 
 ## Usage 
 
@@ -46,6 +46,17 @@ weibo.postWeibo("test 2 from npm", function (error, data) {
   }
 });
 ```
+
+## API 
+
+Weibo
+- getWeibo(screenName, count, cb)
+- postWeibo(msg, cb)
+
+Twitter
+- getTweet(screenName, count, cb)
+- postTweet(msg, cb)
+- postDM(screenName, msg, cb)
  
 ## How to get Weibo access_token
 
