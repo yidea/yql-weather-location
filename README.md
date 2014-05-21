@@ -1,4 +1,4 @@
-# node-weibo-twitter
+node-weibo-twitter
 -------------------
 
 An util for get/post weibo/tweet
