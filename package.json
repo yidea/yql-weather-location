@@ -1,35 +1,41 @@
 {
-  "name": "node-weibo-twitter",
+  "name": "yql-weather-location",
   "version": "0.0.1",
-  "description": "Npm module for tweet and weibo",
+  "description": "An util for easier YQL(Yahoo Query Language) with nodejs",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/yidea/node-weibo-twitter.git"
   },
   "keywords": [
-    "weibo",
-    "twitter",
-    "tweet",
-    "nodejs"
+    "yql",
+    "yahoo",
+    "location",
+    "geolocation",
+    "weather"
   ],
   "author": {
     "name": "Yi Cao",
     "email": "email4yi@gmail.com"
   },
-  "homepage": "https://github.com/yidea/node-weibo-twitter",
+  "homepage": "https://github.com/yidea/yql-weather-location",
   "licenses": [
     {
-      "type" : "MIT",
-      "url" : "http://github.com/yun77op/weibo-oauth2/raw/master/LICENSE"
+      "type": "MIT"
     }
   ],
-  "dependencies":{
-    "oauth":"0.9.8"
+  "dependencies": {
+    "q": "^1.0.1",
+    "superagent": "^0.18.0"
   },
-  "devDependencies":{
-    "mocha":">=0.7.0",
-    "should":">=0.4.2"
+  "devDependencies": {
+    "chai": "1.9.0",
+    "mocha": "1.17.1 ",
+    "sinon": "1.8.2",
+    "sinon-chai": "^2.5.0"
   },
   "engines": [
     "node >= 0.8.0"

@@ -1,7 +1,9 @@
-node-weibo-twitter
+yql-weather-location
 ==================
 
-An util for get/post weibo/tweet
+An util for easier YQL(Yahoo Query Language) with nodejs 
+
+Visual test with YQL console here https://developer.yahoo.com/yql/console/
 
 ## Installation
 
@@ -12,62 +14,18 @@ npm install node-weibo-twitter
 - add docs
 - refactor code, put in its own file in lib
 - add unit test cover 
-- more api support (direct message)
 
 ## Usage 
 
 ```js
-var NodeWeiboTwitter= require("node-weibo-twitter");
+YQL.exec
 
-var twitterOptions = {
-  consumer_key: "YOURS",
-  consumer_secret: "YOURS",
-  access_token_key: "YOURS",
-  access_token_secret: "YOURS"
-};
-var twitter = NodeWeiboTwitter.create("twitter", twitterOptions);
-twitter.getTweet("Real_CSS_Tricks", 5, function (error, data) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(data);
-  }
-});
+YQL.exec("SELECT * FROM weather.forecast WHERE woeid=@woeid AND u='c'", { woeid:28341390 },
 
-var weiboOptions = {
-  consumer_key: "YOURS",
-  consumer_secret: "YOURS",
-  access_token_key: "YOURS"
-};
-var weibo = NodeWeiboTwitter.create("weibo", weiboOptions);
-weibo.postWeibo("test 2 from npm", function (error, data) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(data);
-  }
-});
 ```
 
 ## API 
 
-Weibo
-- getWeibo(screenName, count, cb)
-- postWeibo(msg, cb)
-
-Twitter
-- getTweet(screenName, count, cb)
-- postTweet(msg, cb)
-- postDM(screenName, msg, cb)
- 
-## How to get Weibo access_token
-
-- API Doc
-http://open.weibo.com/wiki/%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6%E8%AF%B4%E6%98%8E
-- Get Authorize Code, set redirect url to http://127.0.0.1
-https://api.weibo.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=YOUR_REGISTERED_REDIRECT_URI
-- Get Access Token (Use POSTMAN w post method, not support browser access)
-https://api.weibo.com/oauth2/access_token?client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&grant_type=authorization_code&redirect_uri=YOUR_REGISTERED_REDIRECT_URI&code=CODE
 
 License (MIT)
 -------------
