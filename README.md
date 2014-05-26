@@ -1,26 +1,54 @@
 yql-weather-location
 ==================
 
-An util for easier YQL(Yahoo Query Language) with nodejs 
+A NPM util for easier YQL(Yahoo Query Language) with Promise in nodejs, also provides helper for getting location and weather.  
+YQL console: https://developer.yahoo.com/yql/console/
+Documentation: http://developer.yahoo.com/yql/guide/
 
-Visual test with YQL console here https://developer.yahoo.com/yql/console/
+## Dependency
+
+Q, Superagent, Underscore
 
 ## Installation
 
-npm install node-weibo-twitter
+npm install yql-weather-location
 
 ## TODO
 
+- use redis as option for caching?
 - add docs
-- refactor code, put in its own file in lib
-- add unit test cover 
+- add CI 
 
 ## Usage 
 
 ```js
-YQL.exec
+var YQL = require("yql-weather-location");
 
-YQL.exec("SELECT * FROM weather.forecast WHERE woeid=@woeid AND u='c'", { woeid:28341390 },
+// YQL.exec(query, [params, httpOptions])
+YQL.exec("SELECT * FROM csv WHERE url='http://finance.yahoo.com/d/quotes.csv?s=FB&f=snl1d1t1ohgdr'")
+  .then(function (res) {
+    expect(res).to.be.ok;
+  }, function (err) {
+    console.log(err);
+  });
+
+// YQL.location(city)
+YQL.location("palo alto")
+  .then(function (res) {
+    expect(res).to.be.ok;
+  });
+  
+// YQL.weather(options)
+// - if only knows the city (will first call YQL.location to get woeid, then call weather service)
+YQL.weather({city: "mountain view"})
+  .then(function (res) {
+    expect(res).to.be.ok;
+  });
+// - if knows woeid
+YQL.weather({woeid: "2455920"})
+  .then(function (res) {
+    expect(res).to.be.ok;
+  });
 
 ```
 
