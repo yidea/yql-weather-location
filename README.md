@@ -1,7 +1,7 @@
 yql-weather-location
 ==================
 
-A NPM util for easier YQL(Yahoo Query Language) with Promise in nodejs, also provides helper for getting location and weather.  
+A NPM util for easier YQL(Yahoo Query Language) with Q Promise in nodejs, also provides helper for getting location and weather.  
 YQL console: https://developer.yahoo.com/yql/console/
 Documentation: http://developer.yahoo.com/yql/guide/
 
@@ -16,7 +16,7 @@ npm install yql-weather-location
 ## TODO
 
 - use redis as option for caching?
-- add docs
+- add more docs and tests 
 - add CI 
 
 ## Usage 
@@ -40,7 +40,7 @@ YQL.location("palo alto")
   
 // YQL.weather(options)
 // - if only knows the city (will first call YQL.location to get woeid, then call weather service)
-YQL.weather({city: "mountain view"})
+YQL.weather({city: "mountain view", unit="c"})
   .then(function (res) {
     expect(res).to.be.ok;
   });
@@ -49,11 +49,11 @@ YQL.weather({woeid: "2455920"})
   .then(function (res) {
     expect(res).to.be.ok;
   });
-
 ```
 
-## API 
-
+## API
+ 
+Soon.. 
 
 License (MIT)
 -------------

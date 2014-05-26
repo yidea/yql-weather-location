@@ -1,21 +1,23 @@
 {
   "name": "yql-weather-location",
   "version": "0.0.1",
-  "description": "An util for easier YQL(Yahoo Query Language) with nodejs",
+  "description": "A NPM util for easier YQL(Yahoo Query Language) with Q Promise in nodejs, also provides helper for getting location and weather.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yidea/node-weibo-twitter.git"
+    "url": "https://github.com/yidea/yql-weather-location"
   },
   "keywords": [
     "yql",
-    "yahoo",
+    "weather",
     "location",
     "geolocation",
-    "weather"
+    "promise",
+    "yahoo",
+    "yidea"
   ],
   "author": {
     "name": "Yi Cao",
