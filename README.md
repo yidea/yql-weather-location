@@ -2,8 +2,8 @@ yql-weather-location
 ==================
 
 A NPM util for easier YQL(Yahoo Query Language) with Q Promise in nodejs, also provides helper for getting location and weather.  
-YQL console: https://developer.yahoo.com/yql/console/
-Documentation: http://developer.yahoo.com/yql/guide/
+- YQL console: https://developer.yahoo.com/yql/console/
+- Documentation: http://developer.yahoo.com/yql/guide/
 
 ## Dependency
 
