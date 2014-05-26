@@ -44,6 +44,7 @@ YQL.weather({city: "mountain view", unit="c"})
   .then(function (res) {
     expect(res).to.be.ok;
   });
+  
 // - if knows woeid
 YQL.weather({woeid: "2455920"})
   .then(function (res) {
