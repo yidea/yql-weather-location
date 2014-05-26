@@ -11,7 +11,9 @@ Q, Superagent, Underscore
 
 ## Installation
 
+```js
 npm install yql-weather-location
+```
 
 ## TODO
 
