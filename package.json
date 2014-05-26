@@ -1,8 +1,8 @@
 {
   "name": "yql-weather-location",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A NPM util for easier YQL(Yahoo Query Language) with Q Promise in nodejs, also provides helper for getting location and weather.",
-  "main": "index.js",
+  "main": "lib/yql-weather-location.js",
   "scripts": {
     "test": "mocha test"
   },
