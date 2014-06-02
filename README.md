@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yidea/yql-weather-location.png)](https://travis-ci.org/yidea/yql-weather-location)
+
 yql-weather-location
 ==================
 
