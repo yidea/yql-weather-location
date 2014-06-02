@@ -20,8 +20,7 @@ npm install yql-weather-location
 ## TODO
 
 - use redis as option for caching?
-- add more docs and tests 
-- add CI 
+- add more docs and tests, code coverage 
 
 ## Usage 
 
