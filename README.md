@@ -56,10 +56,6 @@ YQL.weather({woeid: "2455920"})
   });
 ```
 
-## API
- 
-Soon.. 
-
 License (MIT)
 -------------
 
